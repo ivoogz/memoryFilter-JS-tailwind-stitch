@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Memory Finder</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13a4ec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101c22",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .form-select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .dark .form-select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        }
+
+        .glow-border {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glow-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: conic-gradient(from 180deg at 50% 50%, #13a4ec00 0deg, #13a4ec80 120deg, #13a4ec00 360deg);
+            animation: rotate 4s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: translateX(-50%) rotate(0deg);
+            }
+
+            to {
+                transform: translateX(-50%) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-white">
+    <div class="relative min-h-screen">
+        <div class="absolute top-0 left-0 w-full h-full bg-background-dark overflow-hidden">
+            <div
+                class="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,_rgba(19,164,236,0.1)_0%,_transparent_40%)]">
+            </div>
+        </div>
+        <div class="relative z-10 flex flex-col min-h-screen">
+            <header class="border-b border-white/10">
+                <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 48 48"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path>
+                        </svg>
+                        <h1 class="text-xl font-bold text-white">Memory Finder</h1>
+                    </div>
+                </nav>
+            </header>
+            
+            <main class="flex-grow container mx-auto px-6 py-16 flex items-center justify-center">
+                <div class="w-full max-w-4xl">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tighter">Encuentra la Memoria RAM
+                            Perfecta</h2>
+                        <p class="mt-4 text-lg text-white/60">Filtra y descubre el componente ideal para tu PC.</p>
+                    </div>
+                    <div
+                        class="bg-background-dark/50 dark:bg-background-dark/70 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+                        <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="col-span-1 lg:col-span-1">
+                                <label class="flex items-center text-sm font-medium text-white/80 mb-2" for="capacity">
+                                    <span class="material-symbols-outlined mr-2 text-primary">memory</span> Capacidad
+                                </label>
+                                <select
+                                    class="form-select w-full bg-white/5 dark:bg-white/5 border border-white/20 rounded-lg text-white placeholder-white/50 focus:ring-primary focus:border-primary transition-all"
+                                    id="capacidad">
+                                    <option disabled="" selected="">Selecciona la capacidad</option>
+                                    <option value="8GB">8 GB</option>
+                                    <option value="16GB">16 GB</option>
+                                    <option value="32GB">32 GB</option>
+                                    <option value="64GB">64 GB</option>
+                                    <option value="">Todos las capacidades</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1 lg:col-span-1">
+                                <label class="flex items-center text-sm font-medium text-white/80 mb-2" for="type">
+                                    <span class="material-symbols-outlined mr-2 text-primary">dns</span> Tipo
+                                </label>
+                                <select
+                                    class="form-select w-full bg-white/5 dark:bg-white/5 border border-white/20 rounded-lg text-white placeholder-white/50 focus:ring-primary focus:border-primary transition-all"
+                                    id="tipo">
+                                    <option disabled="" selected="">Selecciona el tipo</option>
+                                    <option value="DDR4">DDR4</option>
+                                    <option value="DDR5">DDR5</option>
+                                    <option value="">Todos los tipos</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1 lg:col-span-1">
+                                <label class="flex items-center text-sm font-medium text-white/80 mb-2" for="speed">
+                                    <span class="material-symbols-outlined mr-2 text-primary">speed</span> Velocidad
+                                </label>
+                                <select
+                                    class="form-select w-full bg-white/5 dark:bg-white/5 border border-white/20 rounded-lg text-white placeholder-white/50 focus:ring-primary focus:border-primary transition-all"
+                                    id="velocidad">
+                                    <option disabled="" selected="">Selecciona la velocidad</option>
+                                    <option value="3200MHz">3200 MHz</option>
+                                    <option value="3600MHz">3600 MHz</option>
+                                    <option value="5200MHz">5200 MHz</option>
+                                    <option value="6000MHz">6000 MHz</option>
+                                    <option value="">Todas las velocidades</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1 md:col-span-1">
+                                <label class="flex items-center text-sm font-medium text-white/80 mb-2" for="brand">
+                                    <span class="material-symbols-outlined mr-2 text-primary">sell</span> Marca
+                                </label>
+                                <select
+                                    class="form-select w-full bg-white/5 dark:bg-white/5 border border-white/20 rounded-lg text-white placeholder-white/50 focus:ring-primary focus:border-primary transition-all"
+                                    id="marca">
+                                    <option disabled="" selected="">Selecciona la marca</option>
+                                    <option value="Corsair">Corsair</option>
+                                    <option value="Kingston">Kingston</option>  
+                                    <option value="Crucial">Crucial</option>
+                                    <option value="G.Skill">G.Skill</option>
+                                    <option value="Patriot">Patriot</option>
+                                    <option value="TeamGroup">TeamGroup</option>
+                                    <option value="Crucial">Crucial</option>
+                                    <option value="">Todas las marcas</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1 md:col-span-1">
+                                <label class="flex items-center text-sm font-medium text-white/80 mb-2" for="precio">
+                                    <span class="material-symbols-outlined mr-2 text-primary">timer</span>Precio
+                                </label>
+                                <select
+                                    class="form-select w-full bg-white/5 dark:bg-white/5 border border-white/20 rounded-lg text-white placeholder-white/50 focus:ring-primary focus:border-primary transition-all"
+                                    id="precio">
+                                    <option disabled="" selected="">Selecciona el rango de precios</option>
+                                    <option value="0-10000">Menos de $10.000</option>
+                                    <option value="10000-50000" value="10000">Entre $10.000 y $50.000</option>
+                                    <option value="50000-1000000">Mas de $50.000</option>
+                                    <option value="">Todos los precios</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1 md:col-span-1 flex items-end">
+                                <button
+                                    class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-4 rounded-lg transition-all flex items-center justify-center" id="btnBusqueda">
+                                    <span class="material-symbols-outlined mr-2">search</span>
+                                    Buscar
+                                </button>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+
+            <div id="resultados" class="flex-row max-w-4xl mx-auto m-4 w-full bg-background-dark/50 dark:bg-background-dark/70 rounded-lg border border-white/10 hidden">
+
+        
+
+            </div>
+
+
+            <footer class="text-center py-6 text-sm text-white/40 border-t border-white/10">
+                <p>Iván Gómez Portafolio</p>
+            </footer>
+        </div>
+    </div>
+
+
+    <script src="db.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
